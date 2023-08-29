@@ -32,7 +32,7 @@ export default async function (req, res) {
       model: "text-davinci-003",
       prompt: generatePrompt(need, context),
       temperature: 0.6,
-      max_tokens: 1000,
+      max_tokens: 2000,
     });
     res.status(200).json({ result: completion.data.choices[0].text });
   } catch(error) {
@@ -55,6 +55,6 @@ function generatePrompt(need, context) {
   const contextLine = context !== "" ? `Context: ${context}` : "";
   return `Need: ${need}
 ${contextLine}
-Ticket content structure: summary, user story, background, goals, how to demo, acceptance criteria
+Ticket content: summary, user story, background, goals, how to demo, acceptance criteria
 Ticket (markdown):`;
 }
